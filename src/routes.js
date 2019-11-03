@@ -2,7 +2,7 @@ const express = require('express')
 
 const routes = express.Router()
 
-routes.get('/', (req, res) => {
+routes.post('/users', (req, res) => {
   return res.json({ msg: 'Hello World' })
 })
 
