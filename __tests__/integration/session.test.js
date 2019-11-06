@@ -1,5 +1,3 @@
-require('../../src/database/index')
-
 const request = require('supertest')
 const faker = require('faker')
 
