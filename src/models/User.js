@@ -11,8 +11,7 @@ class User extends Model {
         password: DataTypes.VIRTUAL,
         password_hash: DataTypes.STRING,
         cpf: DataTypes.STRING(11),
-        birth_date: DataTypes.DATEONLY,
-        address: DataTypes.INTEGER
+        birth_date: DataTypes.DATEONLY
       },
       {
         hooks: {
@@ -25,6 +24,10 @@ class User extends Model {
         sequelize
       }
     )
+  }
+
+  static associate (models) {
+    this.hasOne(models.Address, { foreignKey: 'id', as: 'address' })
   }
 }
 
