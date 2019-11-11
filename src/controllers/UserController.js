@@ -15,7 +15,7 @@ module.exports = {
         cpf,
         birth_date: birthDate
       })
-      return res.status(200).json({ user })
+      return res.status(200).json(user)
     } catch (err) {
       return res.status(401).json({ message: 'Invalid user information' })
     }
