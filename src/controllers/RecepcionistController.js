@@ -1,10 +1,10 @@
 const User = require('../models/User')
-const Client = require('../models/Client')
+const Recepcionist = require('../models/Recepcionist')
 
 module.exports = {
   async store (req, res) {
     const { userId } = req.params
-    const { arrivalTime } = req.body
+    const { salary, shift } = req.body
 
     const user = await User.findByPk(userId)
 
@@ -12,11 +12,12 @@ module.exports = {
       return res.json({ message: 'User not found' })
     }
 
-    const client = await Client.create({
-      arrival_time: arrivalTime,
+    const recepcionist = await Recepcionist.create({
+      salary,
+      shift,
       user_id: userId
     })
 
-    return res.status(200).json(client)
+    return res.status(200).json(recepcionist)
   }
 }
