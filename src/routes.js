@@ -6,6 +6,7 @@ const SessionController = require('./controllers/SessionController')
 const UserController = require('./controllers/UserController')
 const AddressController = require('./controllers/AddressController')
 const ClientController = require('./controllers/ClientController')
+const RecepcionistController = require('./controllers/RecepcionistController')
 
 const routes = express.Router()
 
@@ -18,6 +19,7 @@ routes.get('/users/:userId/address', AddressController.index)
 routes.post('/users/:userId/address', AddressController.store)
 
 routes.post('/clients/:userId', ClientController.store)
+routes.post('/recepcionists/:userId', RecepcionistController.store)
 
 routes.post('/sessions', SessionController.store)
 
