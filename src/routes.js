@@ -24,4 +24,6 @@ routes.get('/dashboard', (req, res) => {
   res.status(200).send()
 })
 
+routes.put('/users/:userId/address', AddressController.update)
+
 module.exports = routes

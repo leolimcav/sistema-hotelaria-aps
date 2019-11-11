@@ -30,5 +30,18 @@ module.exports = {
       user_id: userId
     })
     return res.json(address)
+  },
+
+  async update (req, res) {
+    const { id, street, number, city, state, zipCode } = req.body
+    const address = await Address.findByPk(id)
+    address.update({
+      street,
+      number,
+      city,
+      state,
+      zip_code: zipCode
+    })
+    return res.status(200).json(address)
   }
 }
