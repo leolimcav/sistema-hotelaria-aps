@@ -5,6 +5,7 @@ const authMiddleware = require('./middleware/auth')
 const SessionController = require('./controllers/SessionController')
 const UserController = require('./controllers/UserController')
 const AddressController = require('./controllers/AddressController')
+const ClientController = require('./controllers/ClientController')
 
 const routes = express.Router()
 
@@ -15,6 +16,8 @@ routes.delete('/users/:userId', UserController.destroy)
 
 routes.get('/users/:userId/address', AddressController.index)
 routes.post('/users/:userId/address', AddressController.store)
+
+routes.post('/clients/:userId', ClientController.store)
 
 routes.post('/sessions', SessionController.store)
 
