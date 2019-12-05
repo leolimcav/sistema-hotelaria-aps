@@ -28,9 +28,12 @@ class User extends Model {
   }
 
   static associate (models) {
-    this.hasOne(models.Address, { foreignKey: 'id', as: 'address' });
-    this.hasOne(models.Client, { foreignKey: 'id', as: 'client' });
-    this.hasOne(models.Recepcionist, { foreignKey: 'id', as: 'recepcionist' });
+    this.hasOne(models.Address, { foreignKey: 'user_id', as: 'address' });
+    this.hasOne(models.Client, { foreignKey: 'user_id', as: 'client' });
+    this.hasOne(models.Recepcionist, {
+      foreignKey: 'user_id',
+      as: 'recepcionist'
+    });
   }
 }
 

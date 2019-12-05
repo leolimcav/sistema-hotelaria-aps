@@ -4,8 +4,7 @@ class Client extends Model {
   static init (sequelize) {
     super.init(
       {
-        arrival_date: DataTypes.DATE,
-        departure_date: DataTypes.DATE
+        arrival_date: DataTypes.DATE
       },
       {
         sequelize
@@ -18,7 +17,7 @@ class Client extends Model {
     this.belongsToMany(models.Room, {
       foreignKey: 'client_id',
       through: 'bookings',
-      as: 'rooms'
+      as: 'room'
     });
     this.belongsToMany(models.Service, {
       foreignKey: 'client_id',

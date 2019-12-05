@@ -9,8 +9,8 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
-      departure_date: {
-        type: Sequelize.DATEONLY,
+      booking_date: {
+        type: Sequelize.DATE,
         allowNull: false
       },
       room_id: {

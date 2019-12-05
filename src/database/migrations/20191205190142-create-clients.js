@@ -13,10 +13,6 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true
       },
-      departure_date: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -35,10 +31,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       }
-    })
+    });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('clients')
+    return queryInterface.dropTable('clients');
   }
-}
+};

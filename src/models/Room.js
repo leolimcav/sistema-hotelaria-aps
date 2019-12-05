@@ -14,7 +14,11 @@ class Room extends Model {
   }
 
   static associate (models) {
-    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
+    this.belongsToMany(models.Client, {
+      foreignKey: 'room_id',
+      through: 'bookings',
+      as: 'client'
+    });
   }
 }
 
