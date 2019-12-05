@@ -1,22 +1,27 @@
-const User = require('../models/User')
-const Client = require('../models/Client')
+const User = require('../models/User');
+const Client = require('../models/Client');
 
 module.exports = {
   async store (req, res) {
-    const { userId } = req.params
-    const { arrivalTime } = req.body
+    const { user_id } = req.params;
+    const { arrival_date, departure_date } = req.body;
+    try {
+      const user = await User.findByPk(user_id);
 
-    const user = await User.findByPk(userId)
+      if (!user) {
+        return res.json({ message: 'User not found' });
+      }
 
-    if (!user) {
-      return res.json({ message: 'User not found' })
+      const client = await Client.create({
+        arrival_date,
+        departure_date,
+        user_id
+      });
+
+      return res.status(200).json(client);
+    } catch (err) {
+      console.log(err);
+      return res.json({ error: 'An error ocurred!' });
     }
-
-    const client = await Client.create({
-      arrival_time: arrivalTime,
-      user_id: userId
-    })
-
-    return res.status(200).json(client)
   }
-}
+};
