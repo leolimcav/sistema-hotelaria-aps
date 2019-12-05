@@ -1,27 +1,33 @@
-'use strict'
+'use strict';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('recepcionists', {
+    return queryInterface.createTable('bookings', {
       id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
+      },
+      departure_date: {
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
-      salary: {
-        type: Sequelize.REAL,
-        allowNull: false
-      },
-      shift: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      user_id: {
+      room_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'users',
+          model: 'rooms',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      client_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'clients',
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -35,10 +41,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       }
-    })
+    });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('recepcionists')
+    return queryInterface.dropTable('bookings');
   }
-}
+};
