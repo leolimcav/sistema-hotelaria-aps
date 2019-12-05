@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require('sequelize')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 class User extends Model {
   static init (sequelize) {
@@ -10,6 +10,7 @@ class User extends Model {
         email: DataTypes.STRING,
         password: DataTypes.VIRTUAL,
         password_hash: DataTypes.STRING,
+        rg: DataTypes.STRING(11),
         cpf: DataTypes.STRING(11),
         birth_date: DataTypes.DATEONLY
       },
@@ -17,28 +18,28 @@ class User extends Model {
         hooks: {
           beforeSave: async user => {
             if (user.password) {
-              user.password_hash = await bcrypt.hash(user.password, 8)
+              user.password_hash = await bcrypt.hash(user.password, 8);
             }
           }
         },
         sequelize
       }
-    )
+    );
   }
 
   static associate (models) {
-    this.hasOne(models.Address, { foreignKey: 'id', as: 'address' })
-    this.hasOne(models.Client, { foreignKey: 'id', as: 'client' })
-    this.hasOne(models.Recepcionist, { foreignKey: 'id', as: 'recepcionist' })
+    this.hasOne(models.Address, { foreignKey: 'id', as: 'address' });
+    this.hasOne(models.Client, { foreignKey: 'id', as: 'client' });
+    this.hasOne(models.Recepcionist, { foreignKey: 'id', as: 'recepcionist' });
   }
 }
 
 User.prototype.checkPassword = function (password) {
-  return bcrypt.compare(password, this.password_hash)
-}
+  return bcrypt.compare(password, this.password_hash);
+};
 
 User.prototype.generateToken = function () {
-  return jwt.sign({ id: this.id }, process.env.APP_SECRET)
-}
+  return jwt.sign({ id: this.id }, process.env.APP_SECRET);
+};
 
-module.exports = User
+module.exports = User;

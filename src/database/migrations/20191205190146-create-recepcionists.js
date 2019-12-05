@@ -1,12 +1,20 @@
-'use strict'
+'use strict';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('addresses', {
+    return queryInterface.createTable('recepcionists', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false
+      },
+      salary: {
+        type: Sequelize.REAL,
+        allowNull: false
+      },
+      shift: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       user_id: {
@@ -18,26 +26,6 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
-      },
-      street: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      number: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      city: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      state: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      zip_code: {
-        type: Sequelize.STRING,
-        allowNull: false
       },
       created_at: {
         type: Sequelize.DATE,
@@ -51,6 +39,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('addresses')
+    return queryInterface.dropTable('recepcionists')
   }
 }
