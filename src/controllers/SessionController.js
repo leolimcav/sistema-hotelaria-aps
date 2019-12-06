@@ -9,6 +9,10 @@ module.exports = {
         return res.status(401).json({ message: 'User not found' });
       }
 
+      if(user) {
+        return res.json({msg: "Email already in use!"})
+      }
+
       if (!(await user.checkPassword(password))) {
         return res.status(401).json({ message: 'Incorrect password' });
       }
