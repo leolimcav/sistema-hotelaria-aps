@@ -27,8 +27,9 @@ module.exports = {
 
   async store (req, res) {
     const { value, type } = req.body;
+    const { filename } = req.file;
     try {
-      const room = await Room.create({ value, type });
+      const room = await Room.create({ value, type, photo: filename });
 
       return res.json(room);
     } catch (err) {
@@ -39,11 +40,12 @@ module.exports = {
 
   async update (req, res) {
     const { room_id } = req.params;
+    const { filename } = req.file;
     const { value, type } = req.body;
     try {
       const room = await Room.findByPk(room_id);
 
-      const updatedRoom = await room.update({ value, type });
+      const updatedRoom = await room.update({ value, type, photo: filename });
 
       return res.json(updatedRoom);
     } catch (err) {

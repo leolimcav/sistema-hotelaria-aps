@@ -34,6 +34,17 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull: false
       },
+      role: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'roles',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        defaultValue: 1
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false
@@ -42,10 +53,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       }
-    })
+    });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users')
+    return queryInterface.dropTable('users');
   }
-}
+};

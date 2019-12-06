@@ -5,7 +5,9 @@ class Room extends Model {
     super.init(
       {
         value: DataTypes.REAL,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        availability: DataTypes.STRING,
+        photo: DataTypes.STRING
       },
       {
         sequelize

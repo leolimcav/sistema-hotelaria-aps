@@ -11,7 +11,7 @@ module.exports = {
     }
   },
   async store (req, res) {
-    const { name, email, password, rg, cpf, birth_date } = req.body;
+    const { name, email, password, rg, cpf, birth_date, role } = req.body;
     try {
       const hasUser = await User.findOne({ where: { email } });
 
@@ -36,14 +36,14 @@ module.exports = {
 
   async update (req, res) {
     const { user_id } = req.params;
-    const { name, email, password, rg, cpf, birth_date } = req.body;
+    const { name, email, password, rg, cpf, birth_date, role } = req.body;
     try {
       const user = await User.findByPk(user_id);
 
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-      await user.update({ name, email, password, rg, cpf, birth_date });
+      await user.update({ name, email, password, rg, cpf, birth_date, role });
       return res.status(200).json(user);
     } catch (err) {
       console.log(err);

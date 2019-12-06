@@ -4,8 +4,9 @@ class Service extends Model {
   static init (sequelize) {
     super.init(
       {
-        arrival_date: DataTypes.DATE,
-        departure_date: DataTypes.DATE
+        name: DataTypes.STRING,
+        type: DataTypes.STRING,
+        value: DataTypes.REAL
       },
       {
         sequelize

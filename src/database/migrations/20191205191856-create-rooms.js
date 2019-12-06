@@ -22,6 +22,10 @@ module.exports = {
         allowNull: false,
         defaultValue: 'AVAILABLE'
       },
+      photo: {
+        type: Sequelize.STRING,
+        defaultValue: 'NO PICTURE'
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false

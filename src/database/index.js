@@ -11,9 +11,11 @@ const Dish = require('../models/Dish');
 const Order = require('../models/Order');
 const Service = require('../models/Service');
 const OrderDetail = require('../models/OrderDetail');
+const Role = require('../models/Role');
 
 const connection = new Sequelize(dbConfig);
 
+Role.init(connection);
 User.init(connection);
 Address.init(connection);
 Client.init(connection);
@@ -25,6 +27,7 @@ Order.init(connection);
 Service.init(connection);
 OrderDetail.init(connection);
 
+Role.associate(connection.models);
 Address.associate(connection.models);
 User.associate(connection.models);
 Client.associate(connection.models);
