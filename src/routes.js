@@ -1,6 +1,8 @@
 const express = require('express');
+const multer = require('multer');
 
 // const authMiddleware = require('./middleware/auth');
+const uploadConfig = require('./config/upload');
 
 const SessionController = require('./controllers/SessionController');
 const UserController = require('./controllers/UserController');
@@ -13,8 +15,12 @@ const RestaurantController = require('./controllers/RestaurantController');
 const DishController = require('./controllers/DishController');
 const OrderController = require('./controllers/OrderController');
 const CartController = require('./controllers/CartController');
+const ServiceController = require('./controllers/ServiceController');
+const ClientServiceController = require('./controllers/ClientServiceController');
 
 const routes = express.Router();
+
+const upload = multer(uploadConfig);
 
 // Users routes
 
@@ -53,7 +59,7 @@ routes.post('/sessions', SessionController.store);
 
 routes.get('/rooms', RoomController.index);
 routes.get('/rooms/available', RoomController.showRooms);
-routes.post('/rooms', RoomController.store);
+routes.post('/rooms', upload.single('photo'), RoomController.store);
 routes.put('/rooms/:room_id', RoomController.update);
 routes.delete('/rooms/:room_id', RoomController.destroy);
 
@@ -84,6 +90,21 @@ routes.put('/clients/orders/:order_id/dishes/:dish_id', CartController.update);
 routes.delete(
   '/clients/orders/:order_id/dishes/:dish_id',
   CartController.destroy
+);
+
+// Services routes
+
+routes.get('/services', ServiceController.index);
+routes.post('/services', ServiceController.store);
+routes.put('/services/:service_id', ServiceController.update);
+routes.delete('/services/:service_id', ServiceController.destroy);
+
+// Client Service routes
+
+routes.get('/clients/:client_id/services', ClientServiceController.index);
+routes.post(
+  '/clients/:client_id/services/:service_id',
+  ClientServiceController.store
 );
 
 // routes.use(authMiddleware);

@@ -34,6 +34,7 @@ class User extends Model {
       foreignKey: 'user_id',
       as: 'recepcionist'
     });
+    this.belongsTo(models.Role, { foreignKey: 'role', as: 'roles' });
   }
 }
 

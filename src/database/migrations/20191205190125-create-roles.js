@@ -20,10 +20,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       }
-    })
+    });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('roles')
+    return queryInterface.dropTable('roles');
   }
-}
+};
