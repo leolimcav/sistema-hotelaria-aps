@@ -1,6 +1,43 @@
-const Sequelize = require('sequelize')
-const dbConfig = require('../config/database')
+const Sequelize = require('sequelize');
+const dbConfig = require('../config/database');
 
-const connection = new Sequelize(dbConfig)
+const User = require('../models/User');
+const Address = require('../models/Address');
+const Client = require('../models/Client');
+const Recepcionist = require('../models/Recepcionist');
+const Room = require('../models/Room');
+const Restaurant = require('../models/Restaurant');
+const Dish = require('../models/Dish');
+const Order = require('../models/Order');
+const Service = require('../models/Service');
+const OrderDetail = require('../models/OrderDetail');
+const Role = require('../models/Role');
+const Booking = require('../models/Booking');
 
-module.exports = connection
+const connection = new Sequelize(dbConfig);
+
+Role.init(connection);
+User.init(connection);
+Address.init(connection);
+Client.init(connection);
+Recepcionist.init(connection);
+Room.init(connection);
+Restaurant.init(connection);
+Dish.init(connection);
+Order.init(connection);
+Service.init(connection);
+OrderDetail.init(connection);
+Booking.init(connection);
+
+Role.associate(connection.models);
+Address.associate(connection.models);
+User.associate(connection.models);
+Client.associate(connection.models);
+Recepcionist.associate(connection.models);
+Room.associate(connection.models);
+Restaurant.associate(connection.models);
+Dish.associate(connection.models);
+Order.associate(connection.models);
+Service.associate(connection.models);
+
+module.exports = connection;
