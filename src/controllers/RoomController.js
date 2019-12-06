@@ -12,6 +12,18 @@ module.exports = {
     }
   },
 
+  async findOne (req, res) {
+    const { room_id } = req.params;
+    try {
+      const room = await Room.findByPk(room_id);
+
+      return res.json(room);
+    } catch (err) {
+      console.log(err);
+      return res.json({ error: 'An error ocurred!' });
+    }
+  },
+
   async showRooms (req, res) {
     try {
       const rooms = await Room.findAll({

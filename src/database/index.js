@@ -12,6 +12,7 @@ const Order = require('../models/Order');
 const Service = require('../models/Service');
 const OrderDetail = require('../models/OrderDetail');
 const Role = require('../models/Role');
+const Booking = require('../models/Booking');
 
 const connection = new Sequelize(dbConfig);
 
@@ -26,6 +27,7 @@ Dish.init(connection);
 Order.init(connection);
 Service.init(connection);
 OrderDetail.init(connection);
+Booking.init(connection);
 
 Role.associate(connection.models);
 Address.associate(connection.models);

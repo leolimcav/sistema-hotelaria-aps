@@ -16,7 +16,7 @@ class Client extends Model {
     this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
     this.belongsToMany(models.Room, {
       foreignKey: 'client_id',
-      through: 'bookings',
+      through: models.Booking,
       as: 'room'
     });
     this.belongsToMany(models.Service, {

@@ -25,7 +25,8 @@ module.exports = {
         password,
         rg,
         cpf,
-        birth_date
+        birth_date,
+        role
       });
       return res.status(200).json(user);
     } catch (err) {

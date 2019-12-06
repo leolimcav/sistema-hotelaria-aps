@@ -59,6 +59,7 @@ routes.post('/sessions', SessionController.store);
 
 routes.get('/rooms', RoomController.index);
 routes.get('/rooms/available', RoomController.showRooms);
+routes.get('/rooms/:room_id', RoomController.findOne);
 routes.post('/rooms', upload.single('photo'), RoomController.store);
 routes.put('/rooms/:room_id', RoomController.update);
 routes.delete('/rooms/:room_id', RoomController.destroy);
@@ -102,10 +103,7 @@ routes.delete('/services/:service_id', ServiceController.destroy);
 // Client Service routes
 
 routes.get('/clients/:client_id/services', ClientServiceController.index);
-routes.post(
-  '/clients/:client_id/services/:service_id',
-  ClientServiceController.store
-);
+routes.post('/clients/:client_id/services', ClientServiceController.store);
 
 // routes.use(authMiddleware);
 

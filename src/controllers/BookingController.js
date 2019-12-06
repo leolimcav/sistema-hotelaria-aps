@@ -40,13 +40,16 @@ module.exports = {
   },
 
   async store (req, res) {
-    const { room_id, client_id } = req.params;
+    const { client_id, room_id } = req.params;
+    const { booking_date } = req.body;
     try {
       const client = await Client.findByPk(client_id);
       const room = await Room.findByPk(room_id);
 
-      await client.addRoom(room_id);
-      await room.setClient(client_id);
+      console.log(client_id, room_id, booking_date);
+
+      await client.addRoom(room_id, { through: { booking_date } });
+      await room.addClient(client_id, { through: { booking_date } });
 
       return res.json({ msg: 'Booking successful!' });
     } catch (err) {

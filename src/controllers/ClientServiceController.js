@@ -10,7 +10,8 @@ module.exports = {
   },
 
   async store (req, res) {
-    const { client_id, service_id } = req.params;
+    const { client_id } = req.params;
+    const { services } = req.body;
     try {
       const client = await Client.findByPk(client_id);
 
@@ -18,11 +19,11 @@ module.exports = {
         return res.json({ msg: 'User not found!' });
       }
 
-      await client.addServices(service_id);
+      await client.addServices(services);
 
-      const services = await client.getServices();
+      const service = await client.getServices();
 
-      return res.json(services);
+      return res.json(service);
     } catch (err) {
       console.log(err);
       return res.json({ error: 'An error ocurred!' });
