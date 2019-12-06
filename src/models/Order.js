@@ -16,7 +16,7 @@ class Order extends Model {
     this.belongsTo(models.Client, { foreignKey: 'client_id', as: 'client' });
     this.belongsToMany(models.Dish, {
       foreignKey: 'order_id',
-      through: 'order_details',
+      through: models.OrderDetail,
       as: 'dishes'
     });
   }

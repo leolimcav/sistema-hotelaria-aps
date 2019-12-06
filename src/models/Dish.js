@@ -20,7 +20,7 @@ class Dish extends Model {
     });
     this.belongsToMany(models.Order, {
       foreignKey: 'dish_id',
-      through: 'order_details',
+      through: models.OrderDetail,
       as: 'orders'
     });
   }

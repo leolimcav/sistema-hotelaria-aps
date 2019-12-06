@@ -11,6 +11,8 @@ const RoomController = require('./controllers/RoomController');
 const BookingController = require('./controllers/BookingController');
 const RestaurantController = require('./controllers/RestaurantController');
 const DishController = require('./controllers/DishController');
+const OrderController = require('./controllers/OrderController');
+const CartController = require('./controllers/CartController');
 
 const routes = express.Router();
 
@@ -66,6 +68,23 @@ routes.delete('/restaurants/:rest_id', RestaurantController.destroy);
 routes.post('/restaurants/:rest_id/dishes', DishController.store);
 routes.put('/restaurants/dishes/:dish_id', DishController.update);
 routes.delete('/restaurants/dishes/:dish_id', DishController.destroy);
+
+// Orders routes
+
+routes.get('/clients/orders/:order_id', OrderController.index);
+routes.get('/clients/:client_id/orders', OrderController.findAll);
+routes.post('/clients/:client_id/orders', OrderController.store);
+routes.delete('/clients/orders/:order_id', OrderController.destroy);
+
+// Cart routes
+
+routes.get('/clients/orders/:order_id/dishes', CartController.index);
+routes.post('/clients/orders/:order_id/dishes/:dish_id', CartController.store);
+routes.put('/clients/orders/:order_id/dishes/:dish_id', CartController.update);
+routes.delete(
+  '/clients/orders/:order_id/dishes/:dish_id',
+  CartController.destroy
+);
 
 // routes.use(authMiddleware);
 
